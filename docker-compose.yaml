@@ -1,0 +1,14 @@
+version: "2"
+services:
+  ansiform:
+    build: .
+    image: challisa/ansiform
+    container_name: ansiform
+    volumes:
+      - $PWD:/workpace
+      - ~/Downloads/aws_keys:/keys
+    working_dir: /workpace
+    environment:
+      - TF_VAR_aws_secret_key=<AWS_SECRET>
+      - TF_VAR_aws_access_key=<AWS_ACCESS_KEY>
+      - TF_VAR_aws_region=us-east-1

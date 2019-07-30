@@ -1,0 +1,25 @@
+---
+- hosts: http
+  become: yes
+  become_user: root
+
+  vars:
+    helloworld: Meow!
+
+  tasks:
+    - name: upgrade all packages
+      yum: name=* state=latest
+
+    - name: Install the httpd package
+      yum:
+        name: httpd
+
+    - name: Start the httpd service
+      service:
+        name: httpd
+        state: started
+
+    - name: Configure Cat App
+      template:
+        src: index.j2
+        dest: /var/www/html/index.html
